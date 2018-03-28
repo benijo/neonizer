@@ -13,6 +13,9 @@ class NeonDecoder implements IDecoder
 	 */
 	public function decode(string $value): array
 	{
+		if (empty($value)) {
+			return [];
+		}
 		return Neon::decode($value);
 	}
 

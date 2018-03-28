@@ -1,49 +1,59 @@
 {
-  "name": "contributte/neonizer",
-  "description": "Neonizer",
-  "keywords": ["nette", "composer"],
-  "type": "library",
-  "license": ["MIT"],
-  "homepage": "https://github.com/contributte/neonizer",
-  "authors": [
-    {
-      "name": "Milan Felix Sulc",
-      "homepage": "https://f3l1x.io"
-    }
-  ],
-  "require": {
-    "php": ">=7.1",
-    "nette/neon": "^2.4.2"
-  },
-  "require-dev": {
-    "ninjify/qa": "~0.7.1",
-    "ninjify/nunjuck": "~0.2.0",
-    "composer/composer": "^1.5",
-    "mockery/mockery": "^1.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Contributte\\Neonizer\\": "src/"
-    }
-  },
-  "scripts": {
-    "qa": [
-      "linter src tests",
-      "codesniffer src tests"
-    ],
-    "tester": [
-      "tester -s -p php --colors 1 -C tests/cases"
-    ],
-    "coverage": [
-      "tester -s -p php --colors 1 -C -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
-    ],
-    "phpstan-install": [
-      "mkdir -p temp/phpstan",
-      "composer require -d temp/phpstan phpstan/phpstan:0.8.5",
-      "composer require -d temp/phpstan phpstan/phpstan-nette:0.8.3"
-    ],
-    "phpstan": [
-      "temp/phpstan/vendor/bin/phpstan analyse -l 7 -c phpstan.neon src"
-    ]
-  }
+	"name": "contributte/neonizer",
+	"description": "Neonizer",
+	"keywords": [
+		"nette",
+		"composer"
+	],
+	"type": "library",
+	"license": [
+		"MIT"
+	],
+	"homepage": "https://github.com/contributte/neonizer",
+	"authors": [
+		{
+			"name": "Milan Felix Sulc",
+			"homepage": "https://f3l1x.io"
+		},
+		{
+			"name": "Josef Benjac",
+			"homepage": "http://josefbenjac.com"
+		}
+	],
+	"require": {
+		"php": ">=7.1",
+		"composer/composer": "^1.6.3",
+		"nette/neon": "^2.4.2",
+		"symfony/console": "^4.0.6"
+	},
+	"require-dev": {
+		"mockery/mockery": "^1.0.0",
+		"ninjify/qa": "~0.7.1",
+		"phpstan/phpstan": "^0.9.2",
+		"phpstan/phpstan-nette": "^0.9.0",
+		"phpunit/phpunit": "^7.0.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"Contributte\\Neonizer\\": "src/"
+		}
+	},
+	"bin": [
+		"bin/neonizer"
+	],
+	"scripts": {
+		"qa": [
+			"linter src tests",
+			"codesniffer src tests"
+		],
+		"tests": [
+			"phpunit tests --colors=always"
+		],
+		"coverage": [
+			"phpunit tests --colors=always -c tests/coverage.xml"
+		],
+		"phpstan": [
+			"phpstan analyse -l max -c phpstan.neon src"
+		]
+	}
 }
